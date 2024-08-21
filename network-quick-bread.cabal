@@ -63,6 +63,7 @@ common deps
     DerivingVia
     DuplicateRecordFields
     FunctionalDependencies
+    LambdaCase
     NoCUSKs
     NoFieldSelectors
     NoStarIsType
@@ -106,12 +107,12 @@ library
 
 library socket
   import:          deps, socketdeps
-  exposed-modules: MyLib
+  exposed-modules: NQB.Socket
   hs-source-dirs:  socket
 
 library network
   import:          deps, networkdeps
-  exposed-modules: MyLib
+  exposed-modules: NQB.Network
   hs-source-dirs:  network
 
 test-suite network-quick-bread-test
@@ -119,4 +120,8 @@ test-suite network-quick-bread-test
   type:           exitcode-stdio-1.0
   hs-source-dirs: test
   main-is:        Main.hs
-  build-depends:  network-quick-bread
+  other-modules:  Test
+  build-depends:
+    , network-quick-bread
+    , network-quick-bread:network
+    , network-quick-bread:socket

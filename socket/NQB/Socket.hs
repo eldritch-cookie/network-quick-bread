@@ -1,0 +1,3 @@
+module NQB.Socket (
+
+) where
